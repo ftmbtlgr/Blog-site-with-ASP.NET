@@ -1,0 +1,65 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IEnumerable<EntityLayer.Concrete.Blog1>
+@{string color = "";}
+
+<head>
+    <style>
+        a:hover {
+            color: darkblue;
+            background-color: none;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2>Postlar</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var x in Model)
+            {
+                if (x.Category.CategoryName == "Yazılım")
+                {
+                    color = "post-category text-white bg-secondary mb-3";
+                }
+                if (x.Category.CategoryName == "Veri Bilimi")
+                {
+                    color = "post-category text-white bg-info mb-3";
+                }
+                if (x.Category.CategoryName == "Yapay Zeka")
+                {
+                    color = "post-category text-white bg-warning mb-3";
+                }
+                if (x.Category.CategoryName == "Yaşam")
+                {
+                    color = "post-category text-white bg-danger mb-3";
+                }
+                <div class="col-lg-4 mb-4">
+                    <div class="entry2">
+                        <a href="/Blog/BlogDetails/@x.BlogID"><img src="@x.BlogImage" style="height:200px" alt="Image" class="img-fluid rounded"></a>
+                        <div class="excerpt">
+                            <a href="/Blog/BlogByCategory/@x.CategoryID"><span class="@color">@x.Category.CategoryName</span></a>
+                            <h2><a href="/Blog/BlogDetails/@x.BlogID">@x.BlogTitle</a></h2>
+                            <div class="post-meta align-items-center text-left clearfix">
+                                <figure class="author-figure mb-0 mr-3 float-left"><img src="@x.Author.AuthorImage" alt="Image" class="img-fluid"></figure>
+                                <span class="d-inline-block mt-1"><a href="#">@x.Author.AuthorName</a></span>
+                                <span>&nbsp;-&nbsp; @(((DateTime)x.BlogDate).ToString("dd-MMM-yyyy"))</span>
+                                Puan: @x.BlogRating
+                            </div>
+
+                            <p>@x.BlogContent.Substring(0, x.BlogContent.Substring(0, 200).LastIndexOf(" "))...</p>
+                            <p><a href="/Blog/BlogDetails/@x.BlogID">Devamını Oku</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

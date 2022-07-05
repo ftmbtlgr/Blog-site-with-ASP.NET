@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Blog1
+@{
+    ViewBag.Title = "UpdateBlog";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.Label("Blog ID")
+    @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Başlığı")
+    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+    <br />
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x => x.CategoryID, ViewBag.values as List<SelectListItem>, new { @class = "form-control" })
+    <br />
+    @Html.Label("Resim Yolu")
+    @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.BlogDate, new { @class = "form-control" })
+    <br />
+    @Html.Label("Yazar")
+    @Html.DropDownListFor(x => x.AuthorID, ViewBag.values2 as List<SelectListItem>, new { @class = "form-control" })
+    <br />
+    @Html.Label("İçerik")
+    @Html.TextAreaFor(x => x.BlogContent, 10, 30, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" onclick="return confirm('Blog yazısını düzenlemek istediğinize emin misiniz?')">Güncelle</button>
+</form>
+
+

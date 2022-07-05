@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Author
+@{
+    ViewBag.Title = "AuthorEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.Label("ID")
+    @Html.TextBoxFor(x => x.AuthorID, new { @class = "form-control" })
+    <br />    
+    @Html.Label("Ad")
+    @Html.TextBoxFor(x => x.AuthorName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Soyad")
+    @Html.TextBoxFor(x => x.AuthorSurName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Kullanıcı Adı")
+    @Html.TextBoxFor(x => x.AuthorUserName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Mail")
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    <br />
+    @Html.Label("Hakkında")
+    @Html.TextAreaFor(x => x.AuthorAbout, 3, 30, new { @class = "form-control" })
+    <br />
+    @Html.Label("Hakkında Kısa")
+    @Html.TextBoxFor(x => x.AuthorAboutShort, new { @class = "form-control" })
+    <br />
+    @Html.Label("Resim")
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" onclick="return confirm('Yazarı güncelleştirmek istediğinize emin misiniz?')">Kaydet</button>
+</form>
+

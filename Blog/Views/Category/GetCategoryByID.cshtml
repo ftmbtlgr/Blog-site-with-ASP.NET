@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Category>
+@foreach (var item in Model)
+{
+    if (item.CategoryStatus)
+    {
+        <li><a href="/Blog/BlogByCategory/@item.CategoryID">@item.CategoryName</a></li>
+    }
+}

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+
+@{
+    ViewBag.Title = "GetCommentByBlog";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Yorumlar</h1>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+                <!-- Timelime example  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <div class="timeline">
+                            @foreach (var item in Model)
+                            {
+                                <!-- timeline time label -->
+                                <div class="time-label">
+                                    <span class="bg-success">@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span>
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <div>
+                                    <i class="fas fa-comments bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="fas fa-envelope"></i> @item.Mail</span>
+                                        <h3 class="timeline-header"><a href="/Author/AuthorAbout/@item.BlogID">@item.UserName</a></h3>
+
+                                        <div class="timeline-body">
+                                            @item.CommentText
+                                        </div>
+                                        @*<div class="timeline-footer">
+                                            <a class="btn btn-primary btn-sm">Detay</a>
+                                            <a class="btn btn-danger btn-sm">Kaldır</a>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            }
+                            <div>
+                                <i class="fas fa-clock bg-gray"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- /.timeline -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+</body>
+</html>
+
